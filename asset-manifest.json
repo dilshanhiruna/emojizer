@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/emojizer/static/css/main.153fdfe0.css",
-    "main.js": "/emojizer/static/js/main.0c123323.js",
+    "main.css": "/emojizer/static/css/main.e1c0aece.css",
+    "main.js": "/emojizer/static/js/main.8706cf2c.js",
     "index.html": "/emojizer/index.html",
-    "main.153fdfe0.css.map": "/emojizer/static/css/main.153fdfe0.css.map",
-    "main.0c123323.js.map": "/emojizer/static/js/main.0c123323.js.map"
+    "main.e1c0aece.css.map": "/emojizer/static/css/main.e1c0aece.css.map",
+    "main.8706cf2c.js.map": "/emojizer/static/js/main.8706cf2c.js.map"
   },
   "entrypoints": [
-    "static/css/main.153fdfe0.css",
-    "static/js/main.0c123323.js"
+    "static/css/main.e1c0aece.css",
+    "static/js/main.8706cf2c.js"
   ]
 }
