@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/emojizer/static/css/main.b9424159.css",
-    "main.js": "/emojizer/static/js/main.01e4a757.js",
+    "main.css": "/emojizer/static/css/main.acbf21dd.css",
+    "main.js": "/emojizer/static/js/main.f02dcb7a.js",
     "static/media/smiling_face.gif": "/emojizer/static/media/smiling_face.e2bd8483145c19527e50.gif",
     "index.html": "/emojizer/index.html",
-    "main.b9424159.css.map": "/emojizer/static/css/main.b9424159.css.map",
-    "main.01e4a757.js.map": "/emojizer/static/js/main.01e4a757.js.map"
+    "main.acbf21dd.css.map": "/emojizer/static/css/main.acbf21dd.css.map",
+    "main.f02dcb7a.js.map": "/emojizer/static/js/main.f02dcb7a.js.map"
   },
   "entrypoints": [
-    "static/css/main.b9424159.css",
-    "static/js/main.01e4a757.js"
+    "static/css/main.acbf21dd.css",
+    "static/js/main.f02dcb7a.js"
   ]
 }
