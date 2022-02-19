@@ -3,7 +3,7 @@ import nodeEmoji from "node-emoji";
 import pluralize from "pluralize";
 import ReactTooltip from "react-tooltip";
 import Switch from "react-switch";
-import Slider, { Range } from "rc-slider";
+import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const Emojizer = () => {
@@ -88,6 +88,7 @@ const Emojizer = () => {
     <div className="container">
       <h1 className="title">Em😎jizer</h1>
       <div>
+        <ReactTooltip effect="solid" />
         <div>
           <textarea
             className="text-area"
@@ -95,6 +96,7 @@ const Emojizer = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
+            maxLength="1000"
           ></textarea>
         </div>
         <div className="controls">
@@ -112,11 +114,12 @@ const Emojizer = () => {
                 onChange={handleChangeRemoveSwitch}
                 checked={removeMode}
                 onColor="#ff0d1d"
+                disabled={emojized.length === 0}
               />
             </div>
           </div>
           <div className="fontSize-slider">
-            <span>Font Size</span>
+            <span>Font Size {fontSize}</span>
             <Slider
               min={10}
               max={30}
@@ -135,9 +138,12 @@ const Emojizer = () => {
             </button>
           </div>
         </div>
-        <hr className="hr-line"/>
+        <hr className="hr-line" />
 
         <div className="output-container">
+          <p style={{ fontSize: "12px" }} hidden={emojized.length === 0}>
+            click on emojis to toggle
+          </p>
           {Object.entries(emojized).map((word, key) => {
             return word[1].emoji ? (
               <div
@@ -174,7 +180,6 @@ const Emojizer = () => {
           })}
         </div>
       </div>
-      <ReactTooltip effect="solid" />
     </div>
   );
 };

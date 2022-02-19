@@ -1,15 +1,15 @@
 .App {
   text-align: center;
+  background-color: #fff7d53d;
 }
-.container {
-}
+
 .word-box {
   display: inline-block;
   margin: 10px;
   padding: 10px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 8px;
-  background-color: #f0f0f0;
+  background-color: #eeeeee;
   cursor: pointer;
   transition: 0.3s all;
 }
@@ -147,6 +147,9 @@
 .output-container {
   /* width: 70%; */
   margin: 10px 100px;
+}
+.container {
+  /* background-color: #fffcf0; */
 }
 .hr-line {
   width: 75%;
