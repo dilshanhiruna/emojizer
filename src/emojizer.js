@@ -3,12 +3,15 @@ import nodeEmoji from "node-emoji";
 import pluralize from "pluralize";
 import ReactTooltip from "react-tooltip";
 import Switch from "react-switch";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const Emojizer = () => {
   const [text, setText] = useState("");
   const [emojized, setEmojized] = useState([]);
   const [advanceMode, setadvanceMode] = useState(false);
   const [removeMode, setremoveMode] = useState(false);
+  const [fontSize, setfontSize] = useState(20);
 
   const EmojizeText = () => {
     var words = [];
@@ -102,6 +105,13 @@ const Emojizer = () => {
         checked={removeMode}
         onColor="#ff0d1d"
       />
+      <Slider
+        min={10}
+        max={30}
+        defaultValue={20}
+        startPoint={20}
+        onChange={(e) => setfontSize(e)}
+      />
       <button onClick={copyText}>Copy</button>
       <button onClick={EmojizeText}>emojize</button>
       <br />
@@ -116,7 +126,10 @@ const Emojizer = () => {
               onClick={() => {
                 removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
               }}
-              style={{ border: !removeMode ? "1px solid #c9c9c9" : "" }}
+              style={{
+                border: !removeMode ? "1px solid #c9c9c9" : "",
+                fontSize: fontSize + "px",
+              }}
             >
               <span data-tip={word[1].word}> {word[1].emoji}</span>
             </div>
@@ -128,6 +141,9 @@ const Emojizer = () => {
               key={key}
               onClick={() => {
                 removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
+              }}
+              style={{
+                fontSize: fontSize + "px",
               }}
             >
               {word[1].word}
