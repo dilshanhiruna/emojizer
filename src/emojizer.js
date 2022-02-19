@@ -15,6 +15,7 @@ const Emojizer = () => {
   const [emojized, setEmojized] = useState("");
   const [advanceMode, setadvanceMode] = useState(false);
   const [removeMode, setremoveMode] = useState(false);
+  const [advanceEdit, setadvanceEdit] = useState(false);
   const [fontSize, setfontSize] = useState(20);
 
   /**
@@ -98,8 +99,24 @@ const Emojizer = () => {
     }
   };
 
+  const advanceEmojiChange = (index, word, emoji) => {
+    if (emoji !== "") {
+      const newArray = [...emojized];
+      newArray[index].emoji = emoji.emoji;
+      setEmojized(newArray);
+    } else {
+      const newArray = [...emojized];
+      newArray[index].emoji = "";
+      setEmojized(newArray);
+    }
+  };
+
   const handleChangeAdvanceSwitch = (nextChecked) => {
     setadvanceMode(nextChecked);
+  };
+  const handleChangeAdvanceEditSwitch = (nextChecked) => {
+    setadvanceEdit(nextChecked);
+    setremoveMode(false);
   };
   const handleChangeRemoveSwitch = (nextChecked) => {
     setremoveMode(nextChecked);
@@ -123,18 +140,31 @@ const Emojizer = () => {
     navigator.clipboard.writeText(text.join(" "));
   }
 
-  const PopupExample = () => (
-    <Popup trigger={<button>Trigger</button>} position="top left">
-      {(close) => (
-        <div>
-          Content here
-          <a className="close" onClick={close}>
-            &times;
-          </a>
+  const AdvanceEditPopup = ({ word, index }) => {
+    var similarEmoji = nodeEmoji.search(pluralize.singular(word));
+    return (
+      <>
+        {similarEmoji.map((emoji, key) => {
+          return (
+            <div
+              className="popup-emoji-container"
+              key={key}
+              onClick={() => advanceEmojiChange(index, word, emoji)}
+            >
+              {emoji.emoji}
+            </div>
+          );
+        })}
+        <div
+          className="popup-emoji-container"
+          style={{ fontSize: "15px", fontWeight: "500" }}
+          onClick={() => advanceEmojiChange(index, word, "")}
+        >
+          <p> {word}</p>
         </div>
-      )}
-    </Popup>
-  );
+      </>
+    );
+  };
 
   return (
     <div className="container">
@@ -162,12 +192,21 @@ const Emojizer = () => {
               />
             </div>
             <div className="switchControls">
+              <span>Advance Edit</span>
+              <Switch
+                onChange={handleChangeAdvanceEditSwitch}
+                checked={advanceEdit}
+                onColor="#f5842f"
+                disabled={emojized.length === 0}
+              />
+            </div>
+            <div className="switchControls">
               <span>Remove mode</span>
               <Switch
                 onChange={handleChangeRemoveSwitch}
                 checked={removeMode}
                 onColor="#ff0d1d"
-                disabled={emojized.length === 0}
+                disabled={emojized.length === 0 || advanceEdit}
               />
             </div>
           </div>
@@ -192,29 +231,91 @@ const Emojizer = () => {
           </div>
         </div>
         <hr className="hr-line" />
-        <PopupExample />
 
         <div className="output-container">
           <p style={{ fontSize: "12px" }} hidden={emojized.length === 0}>
-            click on emojis to toggle
+            {advanceEdit
+              ? "  click on emojis to edit"
+              : "  click on emojis to toggle"}
           </p>
           {Object.entries(emojized).map((word, key) => {
             return word[1].emoji ? (
-              <div
-                className={
-                  "word-box" + (removeMode ? " shake-slow word-box-remove" : "")
+              advanceEdit ? (
+                <Popup
+                  trigger={
+                    <div
+                      className={
+                        "word-box" +
+                        (removeMode ? " shake-slow word-box-remove" : "")
+                      }
+                      onClick={() => {
+                        removeMode
+                          ? removeWord(key)
+                          : ChangeEmoji(key, word[1].word);
+                      }}
+                      style={{
+                        border: word[1].advance ? "1px solid #a3cfab" : "",
+                        fontSize: fontSize + "px",
+                      }}
+                    >
+                      <span data-tip={word[1].word}> {word[1].emoji}</span>
+                    </div>
+                  }
+                  position="top left"
+                  key={key}
+                >
+                  <div>
+                    <AdvanceEditPopup word={word[1].word} index={key} />
+                  </div>
+                </Popup>
+              ) : (
+                <div
+                  className={
+                    "word-box" +
+                    (removeMode ? " shake-slow word-box-remove" : "")
+                  }
+                  key={key}
+                  onClick={() => {
+                    removeMode
+                      ? removeWord(key)
+                      : ChangeEmoji(key, word[1].word);
+                  }}
+                  style={{
+                    border: word[1].advance ? "1px solid #a3cfab" : "",
+                    fontSize: fontSize + "px",
+                  }}
+                >
+                  <span data-tip={word[1].word}> {word[1].emoji}</span>
+                </div>
+              )
+            ) : advanceEdit ? (
+              <Popup
+                trigger={
+                  <div
+                    className={
+                      "word-box" +
+                      (removeMode ? " shake-slow word-box-remove" : "")
+                    }
+                    key={key}
+                    onClick={() => {
+                      removeMode
+                        ? removeWord(key)
+                        : ChangeEmoji(key, word[1].word);
+                    }}
+                    style={{
+                      fontSize: fontSize + "px",
+                    }}
+                  >
+                    {word[1].word}
+                  </div>
                 }
+                position="top left"
                 key={key}
-                onClick={() => {
-                  removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
-                }}
-                style={{
-                  border: word[1].advance ? "1px solid #a3cfab" : "",
-                  fontSize: fontSize + "px",
-                }}
               >
-                <span data-tip={word[1].word}> {word[1].emoji}</span>
-              </div>
+                <div>
+                  <AdvanceEditPopup word={word[1].word} index={key} />
+                </div>
+              </Popup>
             ) : (
               <div
                 className={

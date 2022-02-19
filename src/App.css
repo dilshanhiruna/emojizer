@@ -142,7 +142,7 @@
 }
 
 .fontSize-slider {
-  width: 300px;
+  width: 180px;
   margin: 0 10px;
 }
 
@@ -195,4 +195,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.popup-emoji-container {
+  display: inline-flex;
+  font-size: 25px;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 2px;
 }
