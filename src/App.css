@@ -1,6 +1,8 @@
 .App {
   text-align: center;
 }
+.container {
+}
 .word-box {
   display: inline-block;
   margin: 10px;
@@ -21,4 +23,132 @@
 }
 .word-box-remove:hover {
   background-color: #ffadad;
+}
+.title {
+  font-size: 50px;
+  margin: 0px 0px 40px 0px;
+}
+.text-area {
+  width: 70%;
+  height: 250px;
+  resize: none;
+  border: 2px solid rgb(189, 189, 189);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 26px;
+  color: #575757;
+  font-family: "Poppins", sans-serif;
+}
+.controls {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 10px;
+  /* border: 1px solid rgb(235, 235, 235); */
+  border-radius: 10px;
+  padding: 10px;
+}
+.fontSize-slider {
+  width: 100px;
+  margin: 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* button style */
+.btn-group button {
+  margin: 0px 5px;
+}
+
+/* Fill button styling */
+.fill {
+  font-size: 17px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 10px 40px 10px;
+  outline: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.fill::after {
+  content: "";
+  background-color: #ffe54c;
+  border-radius: 5px;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.fill:hover::after {
+  top: 0px;
+  left: 0px;
+}
+.fill2 {
+  font-size: 17px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 10px 40px 10px;
+  outline: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.fill2::after {
+  content: "";
+  background-color: #66f2d5;
+  width: 100%;
+  border-radius: 5px;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.fill2:hover::after {
+  top: 0px;
+  left: 0px;
+}
+/* End of Fill Button  */
+
+.switch-controls-div {
+  display: inline-flex;
+  justify-content: space-between;
+  margin: 10px;
+  font-weight: 500;
+}
+.switch-controls-div div {
+  vertical-align: middle;
+}
+.switchControls {
+  margin-right: 10px;
+}
+.switchControls span {
+  margin: 5px;
+}
+
+.fontSize-slider {
+  width: 300px;
+  margin: 0 10px;
+}
+
+.output-container {
+  /* width: 70%; */
+  margin: 10px 100px;
+}
+.hr-line {
+  width: 75%;
+  border-color: #e4e4e441;
 }

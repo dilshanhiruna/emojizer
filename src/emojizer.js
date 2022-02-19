@@ -85,73 +85,96 @@ const Emojizer = () => {
   }
 
   return (
-    <div>
-      <h1>Emojizer</h1>
-      <textarea
-        name="text"
-        id=""
-        cols="30"
-        rows="10"
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      ></textarea>
-      <br />
-      <span>Advance mode</span>
-      <Switch onChange={handleChangeAdvanceSwitch} checked={advanceMode} />
-      <span>Remove mode</span>
-      <Switch
-        onChange={handleChangeRemoveSwitch}
-        checked={removeMode}
-        onColor="#ff0d1d"
-      />
-      <Slider
-        min={10}
-        max={30}
-        defaultValue={20}
-        startPoint={20}
-        onChange={(e) => setfontSize(e)}
-      />
-      <button onClick={copyText}>Copy</button>
-      <button onClick={EmojizeText}>emojize</button>
-      <br />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        {Object.entries(emojized).map((word, key) => {
-          return word[1].emoji ? (
-            <div
-              className={
-                "word-box" + (removeMode ? " shake-slow word-box-remove" : "")
-              }
-              key={key}
-              onClick={() => {
-                removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
-              }}
-              style={{
-                border: !removeMode ? "1px solid #c9c9c9" : "",
-                fontSize: fontSize + "px",
-              }}
-            >
-              <span data-tip={word[1].word}> {word[1].emoji}</span>
+    <div className="container">
+      <h1 className="title">Em😎jizer</h1>
+      <div>
+        <div>
+          <textarea
+            className="text-area"
+            name="text"
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          ></textarea>
+        </div>
+        <div className="controls">
+          <div className="switch-controls-div">
+            <div className="switchControls">
+              <span>Advance mode</span>
+              <Switch
+                onChange={handleChangeAdvanceSwitch}
+                checked={advanceMode}
+              />
             </div>
-          ) : (
-            <div
-              className={
-                "word-box" + (removeMode ? " shake-slow word-box-remove" : "")
-              }
-              key={key}
-              onClick={() => {
-                removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
-              }}
-              style={{
-                fontSize: fontSize + "px",
-              }}
-            >
-              {word[1].word}
+            <div className="switchControls">
+              <span>Remove mode</span>
+              <Switch
+                onChange={handleChangeRemoveSwitch}
+                checked={removeMode}
+                onColor="#ff0d1d"
+              />
             </div>
-          );
-        })}
+          </div>
+          <div className="fontSize-slider">
+            <span>Font Size</span>
+            <Slider
+              min={10}
+              max={30}
+              defaultValue={20}
+              startPoint={20}
+              onChange={(e) => setfontSize(e)}
+              trackStyle={{ backgroundColor: "green" }}
+            />
+          </div>
+          <div className="btn-group">
+            <button className="fill" onClick={copyText}>
+              copy
+            </button>
+            <button className="fill2" onClick={EmojizeText}>
+              emojize
+            </button>
+          </div>
+        </div>
+        <hr className="hr-line"/>
+
+        <div className="output-container">
+          {Object.entries(emojized).map((word, key) => {
+            return word[1].emoji ? (
+              <div
+                className={
+                  "word-box" + (removeMode ? " shake-slow word-box-remove" : "")
+                }
+                key={key}
+                onClick={() => {
+                  removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
+                }}
+                style={{
+                  border: !removeMode ? "1px solid #c9c9c9" : "",
+                  fontSize: fontSize + "px",
+                }}
+              >
+                <span data-tip={word[1].word}> {word[1].emoji}</span>
+              </div>
+            ) : (
+              <div
+                className={
+                  "word-box" + (removeMode ? " shake-slow word-box-remove" : "")
+                }
+                key={key}
+                onClick={() => {
+                  removeMode ? removeWord(key) : ChangeEmoji(key, word[1].word);
+                }}
+                style={{
+                  fontSize: fontSize + "px",
+                }}
+              >
+                {word[1].word}
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <ReactTooltip effect="solid" />;
+      <ReactTooltip effect="solid" />
     </div>
   );
 };
