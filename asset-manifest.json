@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/emojizerr/static/css/main.f43e409f.css",
-    "main.js": "/emojizerr/static/js/main.4f2d1aef.js",
-    "index.html": "/emojizerr/index.html",
-    "main.f43e409f.css.map": "/emojizerr/static/css/main.f43e409f.css.map",
-    "main.4f2d1aef.js.map": "/emojizerr/static/js/main.4f2d1aef.js.map"
+    "main.css": "/emojizer/static/css/main.f43e409f.css",
+    "main.js": "/emojizer/static/js/main.4f2d1aef.js",
+    "index.html": "/emojizer/index.html",
+    "main.f43e409f.css.map": "/emojizer/static/css/main.f43e409f.css.map",
+    "main.4f2d1aef.js.map": "/emojizer/static/js/main.4f2d1aef.js.map"
   },
   "entrypoints": [
     "static/css/main.f43e409f.css",
