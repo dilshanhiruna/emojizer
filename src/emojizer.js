@@ -141,9 +141,38 @@ const Emojizer = () => {
   }
 
   const AdvanceEditPopup = ({ word, index }) => {
+    const [suggestedEmojis, setsuggestedEmojis] = useState([]);
+
     var similarEmoji = nodeEmoji.search(pluralize.singular(word));
+
+    const handleSearchChange = (word) => {
+      if (word.length > 2) {
+        setsuggestedEmojis(nodeEmoji.search(word));
+      }
+    };
+
     return (
       <>
+        <input
+          className="popup-emoji-search"
+          type="text"
+          placeholder="search emojis"
+          onChange={(e) => handleSearchChange(e.target.value)}
+        />
+
+        {Object.entries(suggestedEmojis)
+          .slice(0, 10)
+          .map((emoji, key) => {
+            return (
+              <div
+                className="popup-emoji-container"
+                key={key}
+                onClick={() => advanceEmojiChange(index, word, emoji[1])}
+              >
+                {emoji[1].emoji}
+              </div>
+            );
+          })}
         {similarEmoji.map((emoji, key) => {
           return (
             <div
@@ -168,9 +197,18 @@ const Emojizer = () => {
 
   return (
     <div className="container">
-      <h1 className="title">Em😎jizer</h1>
+      <h1 className="title">
+        Em
+        <img
+          src={require("../src/assets/smiling_face.gif")}
+          alt="emoji"
+          width={50}
+          style={{ marginBottom: "-10px" }}
+        />
+        jizer
+      </h1>
       <div>
-        <ReactTooltip effect="solid" />
+        <ReactTooltip effect="solid" place="bottom" />
         <div>
           <textarea
             defaultValue={text}
