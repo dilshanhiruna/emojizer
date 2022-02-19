@@ -27,11 +27,11 @@
 .word-box-remove:hover {
   background-color: #ffadad;
 }
-.title {
+.title h1 {
   font-size: 50px;
   font-family: "Shizuru", cursive;
   color: #494949;
-  margin: 0px 0px 40px 0px;
+  margin: 0px;
   background: #fceabb;
   background: -webkit-linear-gradient(
     to right,
@@ -57,6 +57,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* -webkit-text-stroke: 1px rgba(8, 8, 8, 0.342);  */
+}
+.title h3 {
+  /* margin: 0px; */
+  color: #bb8f2f;
 }
 .text-area {
   width: 70%;

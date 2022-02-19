@@ -197,16 +197,20 @@ const Emojizer = () => {
 
   return (
     <div className="container">
-      <h1 className="title">
-        Em
-        <img
-          src={require("../src/assets/smiling_face.gif")}
-          alt="emoji"
-          width={50}
-          style={{ marginBottom: "-10px" }}
-        />
-        jizer
-      </h1>
+      <div className="title">
+        <h1>
+          Em
+          <img
+            src={require("../src/assets/smiling_face.gif")}
+            alt="emoji"
+            width={50}
+            style={{ marginBottom: "-10px" }}
+          />
+          jizer
+        </h1>
+        <h3>Convert your text into emojis easily!</h3>
+      </div>
+
       <div>
         <ReactTooltip effect="solid" place="bottom" />
         <div>
